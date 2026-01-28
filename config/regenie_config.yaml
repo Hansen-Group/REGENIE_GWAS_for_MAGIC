@@ -1,0 +1,172 @@
+# REGENIE Configuration File
+# This file contains parameters for REGENIE GWAS analysis
+# Adjust these parameters based on your specific analysis requirements
+
+# =============================================================================
+# Data Paths
+# =============================================================================
+
+# Input genotype files (PLINK binary format)
+genotype_prefix: "data/genotypes"
+
+# Phenotype file (tab or space-delimited)
+# Format: FID IID phenotype1 phenotype2 ...
+phenotype_file: "data/phenotypes.txt"
+
+# Covariate file (tab or space-delimited)
+# Format: FID IID covariate1 covariate2 ...
+covariate_file: "data/covariates.txt"
+
+# Output directory
+output_dir: "output"
+
+# =============================================================================
+# Quality Control Parameters
+# =============================================================================
+
+qc:
+  # Minor allele frequency threshold
+  maf_threshold: 0.01
+  
+  # Genotype missingness threshold (per-variant)
+  geno_threshold: 0.1
+  
+  # Individual missingness threshold (per-sample)
+  mind_threshold: 0.1
+  
+  # Hardy-Weinberg equilibrium p-value threshold
+  hwe_threshold: 1e-15
+  
+  # LD pruning for Step 1 variant selection
+  ld_window_size: 1000      # Window size in variant count
+  ld_step_size: 100         # Step size in variant count
+  ld_r2_threshold: 0.9      # r² threshold
+
+# =============================================================================
+# REGENIE Step 1 Parameters
+# =============================================================================
+
+regenie_step1:
+  # Block size (number of SNPs per block)
+  # Larger values = more memory, faster computation
+  bsize: 1000
+  
+  # Minimum minor allele count
+  min_mac: 20
+  
+  # Number of threads
+  threads: 8
+  
+  # Low memory mode (recommended for large datasets)
+  lowmem: true
+  
+  # Cross-validation scheme
+  # Options: k-fold (default k=5), LOOCV
+  cv_folds: 5
+
+# =============================================================================
+# REGENIE Step 2 Parameters
+# =============================================================================
+
+regenie_step2:
+  # Block size for association testing
+  # Typically smaller than Step 1
+  bsize: 400
+  
+  # Minimum minor allele count
+  min_mac: 5
+  
+  # Minimum imputation INFO score (for imputed data)
+  min_info: 0.6
+  
+  # Number of threads
+  threads: 8
+  
+  # Firth regression for binary traits (for rare variants)
+  firth: true
+  
+  # Approximate Firth for computational efficiency
+  approx_firth: true
+
+# =============================================================================
+# Analysis Parameters
+# =============================================================================
+
+analysis:
+  # Trait type
+  # Options: quantitative, binary
+  trait_type: "quantitative"
+  
+  # Genome-wide significance threshold
+  p_threshold: 5e-8
+  
+  # Suggestive significance threshold
+  suggestive_p: 1e-5
+  
+  # Multiple testing correction
+  # Options: bonferroni, fdr
+  correction_method: "bonferroni"
+
+# =============================================================================
+# Computational Resources
+# =============================================================================
+
+resources:
+  # Maximum memory (GB)
+  max_memory: 64
+  
+  # Number of CPU cores
+  cpu_cores: 8
+  
+  # Enable GPU acceleration (if available)
+  use_gpu: false
+
+# =============================================================================
+# Output Options
+# =============================================================================
+
+output:
+  # Generate Manhattan plot
+  manhattan_plot: true
+  
+  # Generate Q-Q plot
+  qq_plot: true
+  
+  # Generate regional plots for significant loci
+  regional_plots: true
+  
+  # Export results in multiple formats
+  export_formats:
+    - "txt"      # Tab-delimited text
+    - "csv"      # Comma-separated values
+  
+  # Compression for large result files
+  compress_results: true
+
+# =============================================================================
+# Advanced Options
+# =============================================================================
+
+advanced:
+  # Include sex chromosome analysis
+  include_sex_chr: false
+  
+  # Include interaction terms
+  include_interactions: false
+  
+  # Variant sets for gene-based testing
+  gene_based_testing: false
+  
+  # Conditional analysis on known loci
+  conditional_analysis: false
+
+# =============================================================================
+# Notes
+# =============================================================================
+# 
+# 1. Adjust thread counts based on available CPU cores
+# 2. For large datasets (>500K individuals), use lowmem mode
+# 3. For binary traits with imbalanced case/control ratio, enable Firth regression
+# 4. Minimum MAC should be adjusted based on sample size
+#    - Larger samples: can use lower MAC
+#    - Smaller samples: increase MAC to ensure stable estimates

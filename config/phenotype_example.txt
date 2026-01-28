@@ -1,0 +1,42 @@
+# Example Phenotype File Format for REGENIE
+#
+# This file shows the format for phenotype data used in REGENIE analysis
+# 
+# Format:
+# - First two columns must be FID (Family ID) and IID (Individual ID)
+# - Subsequent columns contain phenotype values
+# - Missing values should be coded as NA or -9
+# - For binary traits: use 0 for controls, 1 for cases
+# - For quantitative traits: use actual measured values
+#
+# Notes:
+# - Tab or space-delimited
+# - Column names should be descriptive
+# - All individuals in this file should be present in the genotype data
+# - REGENIE will analyze each phenotype column separately
+
+FID	IID	glucose_fasting	insulin_fasting	hba1c	bmi	t2d_status
+FAM001	IND001	95.5	8.2	5.4	24.5	0
+FAM002	IND002	102.3	12.1	5.7	28.3	0
+FAM003	IND003	88.7	6.5	5.1	22.1	0
+FAM004	IND004	125.8	22.5	6.8	32.7	1
+FAM005	IND005	91.2	7.8	5.3	23.9	0
+FAM006	IND006	98.4	9.3	5.5	25.8	0
+FAM007	IND007	110.5	15.7	6.1	29.4	0
+FAM008	IND008	135.2	28.9	7.2	35.1	1
+FAM009	IND009	93.8	8.9	5.4	24.2	0
+FAM010	IND010	105.7	13.4	5.9	27.6	0
+
+# Phenotype descriptions:
+# - glucose_fasting: Fasting glucose (mg/dL) - quantitative trait
+# - insulin_fasting: Fasting insulin (µU/mL) - quantitative trait
+# - hba1c: Hemoglobin A1c (%) - quantitative trait
+# - bmi: Body Mass Index (kg/m²) - quantitative trait
+# - t2d_status: Type 2 diabetes status - binary trait (0=control, 1=case)
+#
+# For your analysis:
+# 1. Replace this example data with your actual phenotype data
+# 2. Ensure FID and IID match your genotype file
+# 3. Check for missing values and code appropriately
+# 4. For quantitative traits, consider inverse normal transformation
+# 5. For binary traits, note the case/control ratio
