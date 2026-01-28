@@ -91,4 +91,5 @@ Some cohorts contain:
 This repo is an archive of the 2024 MAGIC GWAS scripts and is primarily intended for internal reproducibility and reference within CBMR Hansen group.
 
 Contact people
+
 Shanhsan He <shanshan.he@sund.ku.dk>
