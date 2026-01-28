@@ -1,0 +1,83 @@
+# REGENIE GWAS - Git Ignore File
+# This file specifies which files/directories should not be tracked by git
+
+# Data directories
+data/
+output/
+results/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# PLINK files (large binary files)
+*.bed
+*.bim
+*.fam
+*.bk
+*.ped
+*.map
+
+# BGEN files
+*.bgen
+*.sample
+
+# REGENIE output files
+*.regenie
+*.loco
+*.log
+*_pred.list
+
+# Compressed files
+*.gz
+*.zip
+*.tar
+*.tar.gz
+
+# R files
+.Rhistory
+.RData
+.Rproj.user
+*.Rproj
+
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Log files
+*.log
+*.out
+*.err
+
+# Slurm output files (if using HPC)
+slurm-*.out
+
+# Temporary QC files
+*.imiss
+*.lmiss
+*.hwe
+*.hardy
+*.het
+*.sexcheck
+*.genome
+*.frq
+*.prune.in
+*.prune.out
+
+# Keep example data structure
+!config/phenotype_example.txt

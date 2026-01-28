@@ -59,7 +59,7 @@ def summarize_results(results_file, p_threshold=5e-8, output_prefix="summary", t
     
     # Read REGENIE results
     try:
-        df = pd.read_csv(results_file, sep='\s+')
+        df = pd.read_csv(results_file, sep=r'\s+')
     except Exception as e:
         print(f"Error reading file: {e}")
         sys.exit(1)
