@@ -72,7 +72,7 @@ if (length(missing_cols) > 0) {
 df$CHR <- as.character(df$CHROM)
 df$CHR <- gsub("X", "23", df$CHR)
 df$CHR <- gsub("Y", "24", df$CHR)
-df$CHR <- gsub("MT?", "26", df$CHR)
+df$CHR <- gsub("^MT$|^M$", "26", df$CHR)
 df$CHR <- as.numeric(df$CHR)
 
 # Remove NA chromosomes
@@ -90,7 +90,6 @@ cat("Processing", nrow(df), "variants after filtering\n")
 df <- df[order(df$CHR, df$GENPOS), ]
 
 # Create cumulative position for x-axis
-df$BP_cum <- NA
 df$BPcum <- 0
 
 chrom_lengths <- df %>%
@@ -128,8 +127,8 @@ p <- ggplot(df, aes(x = BPcum, y = LOG10P)) +
         expand = c(0.01, 0.01)
     ) +
     scale_y_continuous(expand = c(0, 0)) +
-    geom_hline(yintercept = gwas_threshold, color = "red", linetype = "dashed", size = 0.5) +
-    geom_hline(yintercept = suggestive_threshold, color = "blue", linetype = "dashed", size = 0.5) +
+    geom_hline(yintercept = gwas_threshold, color = "red", linetype = "dashed", linewidth = 0.5) +
+    geom_hline(yintercept = suggestive_threshold, color = "blue", linetype = "dashed", linewidth = 0.5) +
     labs(
         title = "GWAS Manhattan Plot",
         subtitle = paste("REGENIE results -", nrow(df), "variants"),

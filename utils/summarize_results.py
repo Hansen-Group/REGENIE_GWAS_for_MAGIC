@@ -37,7 +37,7 @@ def calculate_lambda_gc(pvalues):
     
     # Calculate lambda as ratio of median observed to expected
     median_chisq = np.median(chisq)
-    expected_median = 0.456  # Median of chi-square(1) distribution
+    expected_median = 0.4549364  # Median of chi-square(1) distribution
     
     lambda_gc = median_chisq / expected_median
     

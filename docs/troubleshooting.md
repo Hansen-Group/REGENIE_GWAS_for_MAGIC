@@ -26,8 +26,9 @@ bash: regenie: command not found
    which regenie
    ```
 
-2. If not installed, download and install:
+2. If not installed, download and install (check https://github.com/rgcgithub/regenie/releases for latest version):
    ```bash
+   # Version 3.2.5 shown as example:
    wget https://github.com/rgcgithub/regenie/releases/download/v3.2.5/regenie_v3.2.5.gz_x86_64_Linux.zip
    unzip regenie_v3.2.5.gz_x86_64_Linux.zip
    chmod +x regenie

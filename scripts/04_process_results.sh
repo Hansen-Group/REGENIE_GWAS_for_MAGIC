@@ -89,7 +89,7 @@ else:
 # Calculate lambda
 chisq = -2 * np.log(df['P'])
 median_chisq = np.median(chisq)
-lambda_gc = median_chisq / 0.456  # 0.456 is chi-square(1) median
+lambda_gc = median_chisq / 0.4549364  # 0.4549364 is chi-square(1) median
 
 # Summary statistics
 summary = {
@@ -118,7 +118,11 @@ cat ${OUTPUT_DIR}/summary_stats.txt
 # Step 3: Extract significant loci
 log "Step 3: Extracting significant loci..."
 
-awk -v p=${P_THRESHOLD} 'NR==1 || $12<p {print}' \
+# Calculate LOG10P threshold from p-value threshold
+LOG10P_THRESHOLD=$(awk -v p=${P_THRESHOLD} 'BEGIN {print -log(p)/log(10)}')
+
+# Extract genome-wide significant variants (REGENIE outputs LOG10P in column 12)
+awk -v thresh="${LOG10P_THRESHOLD}" 'NR==1 || $12>thresh {print}' \
     ${OUTPUT_DIR}/combined_results.txt \
     > ${OUTPUT_DIR}/genome_wide_significant.txt
 

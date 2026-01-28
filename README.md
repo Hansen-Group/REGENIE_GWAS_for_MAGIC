@@ -79,7 +79,8 @@ REGENIE_GWAS_for_MAGIC/
 
 2. **Install REGENIE:**
    ```bash
-   # Download and install REGENIE
+   # Download and install REGENIE (check for latest version at https://github.com/rgcgithub/regenie/releases)
+   # Version 3.2.5 shown below as reference:
    wget https://github.com/rgcgithub/regenie/releases/download/v3.2.5/regenie_v3.2.5.gz_x86_64_Linux.zip
    unzip regenie_v3.2.5.gz_x86_64_Linux.zip
    chmod +x regenie

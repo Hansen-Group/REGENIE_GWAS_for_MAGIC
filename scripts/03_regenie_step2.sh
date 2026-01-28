@@ -84,7 +84,10 @@ log "Step 2: Analyzing results..."
 TOTAL_VARIANTS=$(grep -v "^#" ${OUTPUT_DIR}/assoc_results_*.regenie | grep -v "CHROM" | wc -l || echo "0")
 
 # Count genome-wide significant variants
-SIGNIFICANT_VARIANTS=$(awk -v p=${P_THRESHOLD} 'NR>1 && $12<p' ${OUTPUT_DIR}/assoc_results_*.regenie | wc -l || echo "0")
+# Note: REGENIE outputs LOG10P in column 12 (standard format)
+# For p-value threshold, we need -log10(p) comparison
+LOG10P_THRESHOLD=$(awk -v p=${P_THRESHOLD} 'BEGIN {print -log(p)/log(10)}')
+SIGNIFICANT_VARIANTS=$(awk -v thresh=${LOG10P_THRESHOLD} 'NR>1 && $12>thresh' ${OUTPUT_DIR}/assoc_results_*.regenie | wc -l || echo "0")
 
 log "Total variants tested: ${TOTAL_VARIANTS}"
 log "Genome-wide significant variants (p < ${P_THRESHOLD}): ${SIGNIFICANT_VARIANTS}"
@@ -92,12 +95,13 @@ log "Genome-wide significant variants (p < ${P_THRESHOLD}): ${SIGNIFICANT_VARIAN
 # Step 3: Extract top hits
 log "Step 3: Extracting top associations..."
 
-# Extract variants with p < 1e-5 for review
-awk 'NR==1 || $12<1e-5' ${OUTPUT_DIR}/assoc_results_*.regenie \
+# Extract variants with p < 1e-5 for review (LOG10P > 5)
+awk 'NR==1 || $12>5' ${OUTPUT_DIR}/assoc_results_*.regenie \
     > ${OUTPUT_DIR}/top_associations_p1e-5.txt
 
-# Extract genome-wide significant variants
-awk -v p=${P_THRESHOLD} 'NR==1 || $12<p' ${OUTPUT_DIR}/assoc_results_*.regenie \
+# Extract genome-wide significant variants (LOG10P > 7.3 for p < 5e-8)
+LOG10P_THRESHOLD=$(awk -v p=${P_THRESHOLD} 'BEGIN {print -log(p)/log(10)}')
+awk -v thresh="${LOG10P_THRESHOLD}" 'NR==1 || $12>thresh' ${OUTPUT_DIR}/assoc_results_*.regenie \
     > ${OUTPUT_DIR}/significant_associations.txt
 
 # Step 4: Generate summary report
