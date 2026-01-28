@@ -1,0 +1,16 @@
+fasting_glc_raw	fasting_glc	age,age2,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10
+fasting_glc_raw_bmi_adj	fasting_glc	bmi,age,age2,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10
+fasting_glc_int	fasting_glc_int	no_covariates
+fasting_glc_int_bmi_adj	fasting_glc_int_bmiadj	no_covariates
+hba1c_raw	hba1c	age,age2,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10
+hba1c_glc_adj	hba1c	fasting_glc,age,age2,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10
+hba1c_int	hba1c_int	no_covariates
+hba1c_int_glc_adj	hba1c_int_glcadj	no_covariates
+fasting_insulin_log_raw	log_fasting_insulin	age,age2,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10
+fasting_insulin_log_raw_bmi_adj	log_fasting_insulin	bmi,age,age2,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10
+fasting_insulin_log_int	log_fasting_insulin_int	no_covariates
+fasting_insulin_log_int_bmi_adj	log_fasting_insulin_int_bmiadj	no_covariates
+glc_2h_raw	glc_2h	age,age2,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10
+glc_2h_raw_bmi_adj	glc_2h	bmi,age,age2,C1,C2,C3,C4,C5,C6,C7,C8,C9,C10
+glc_2h_int	glc_2h_int	no_covariates
+glc_2h_int_bmiadj	glc_2h_int_bmiadj	no_covariates
