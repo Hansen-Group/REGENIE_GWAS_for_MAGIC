@@ -16,7 +16,7 @@ The pipeline follows a standard REGENIE workflow:
 
 ## 1.	Prepare inputs
 
-	•	Extract / convert genotype inputs for REGENIE Step 1 (typed/genotyped variant set)
+	•	Extract / convert genotype inputs for REGENIE Step 1 (typed/genotyped variant set)\
 	•	Prepare imputed genotype input for REGENIE Step 2 (BED or BGEN depending on cohort setup)
 	•	Prepare phenotype and covariate files (MAGIC requirement: sex-stratified files)
 	•	Extract imputation quality metrics (Rsq/INFO) when needed for downstream filtering
@@ -37,10 +37,10 @@ The pipeline follows a standard REGENIE workflow:
 
 ## 1) Prepare inputs
 
-Run scripts under:
+### Run scripts under:
 	•	scripts/prepare_input/
 
-Typical steps include:
+### Typical steps include:
 	•	Extract genotyped/typed variants from Michigan imputation VCFs (chr1–22 and chrX/chr23) for Step 1
 	•	Concatenate per-chromosome files and convert to PLINK BED
 	•	Extract imputation quality metrics (Rsq/INFO) from Minimac/Michigan *.info.gz
@@ -50,10 +50,10 @@ See scripts/prepare_input/README.md (or step-level READMEs) for details.
 
 ## 2) Run REGENIE
 
-Run scripts under:
+### Run scripts under:
 	•	scripts/regenie/
 
-A typical REGENIE run is:
+### A typical REGENIE run is:
 	•	Step 1 using typed BED genotype
 	•	Step 2 using imputed genotype (BED or BGEN depending on cohort)
 	•	Sex-stratified analyses: Male and Female are run separately
@@ -62,7 +62,7 @@ Most runs are implemented as SLURM job arrays, where each array task corresponds
 
 ## 3) Post-process and qc plot
 
-After REGENIE completes, post-processing scripts may:
+### After REGENIE completes, post-processing scripts may:
 	•	Filter results by MAF (e.g. MAF >= 0.01)
 	•	Filter by imputation quality (e.g. Rsq >= 0.3)
 	•	Generate Manhattan and QQ plots using Rscript
@@ -71,17 +71,17 @@ After REGENIE completes, post-processing scripts may:
 
 ## Sex-stratified requirement (MAGIC)
 
-MAGIC requires sex-stratified analysis for this project, so phenotypes/covariates are prepared separately for:
+### MAGIC requires sex-stratified analysis for this project, so phenotypes/covariates are prepared separately for:
 	•	Male
 	•	Female
 
-Ensure:
+### Ensure:
 	•	No missing phenotype values in the phenotype files used for each run
 	•	Sample IDs match between genotype and phenotype/covariate files
 
 ## Sample exclusions: withdrawals and relatedness
 
-Some cohorts contain:
+### Some cohorts contain:
 	•	Participants who requested withdrawal (must be excluded)
 	•	Related individuals (should be excluded for standard GWAS)
 
