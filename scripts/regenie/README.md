@@ -35,13 +35,13 @@ A tab-separated file where each row defines one analysis.
 
 ### Example
 
+```text
 trait_name    phenotype_col    covariates
 BMI           bmi              age,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10
 TG            triglycerides    age,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10
+```
 
-See Inter99_traits.tsv for a working example.
-
-
+See `Inter99_traits.tsv` for a working example.
 ## 2) Genotype input
 
 	• Step 1 genotype: genotyped variant BED (smaller set used to fit ridge model and LOCO predictors)
