@@ -28,12 +28,13 @@ For generating genotype variants, phenotype files, and covariate files, refer to
 
 A tab-separated file where each row defines one analysis.
 
-Minimum required columns:
+### Minimum required columns:
 	•	trait_name: output name for the analysis
 	•	phenotype: phenotype column name in the phenotype file
 	•	covariates: covariate column names (or no_covariates)
 
-Example
+### Example
+
 trait_name    phenotype_col    covariates
 BMI           bmi              age,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10
 TG            triglycerides    age,PC1,PC2,PC3,PC4,PC5,PC6,PC7,PC8,PC9,PC10
@@ -49,7 +50,7 @@ See Inter99_traits.tsv for a working example.
 
 ## 3) Phenotype and covariate files
 
-Sex-stratified phenotype/covariate files are typically used, e.g.:
+### Sex-stratified phenotype/covariate files are typically used, e.g.:
 	•	${COHORT}_MAGIC_Male_phenotype.txt, ${COHORT}_MAGIC_Male_covariates.txt
 	•	${COHORT}_MAGIC_Female_phenotype.txt, ${COHORT}_MAGIC_Female_covariates.txt
 
@@ -57,7 +58,7 @@ Sex-stratified phenotype/covariate files are typically used, e.g.:
 
 # Sample exclusions and relatedness filtering (IMPORTANT)
 
-Several CBMR in-house cohorts include:
+### Several CBMR in-house cohorts include:
 	•	participants who have requested withdrawal (must be excluded), and/or
 	•	related individuals (should be excluded for standard GWAS analyses)
 
@@ -65,11 +66,11 @@ Several CBMR in-house cohorts include:
 
 Cohort folders often contain README documentation (provided by DAP) describing known issues and mandatory exclusions.
 
-Example (Inter99):
+### Example (Inter99):
 	•	Some participants requested withdrawal through Glostrup Hospital and must be excluded.
 	•	These individuals are listed in withdrawals.ids under the supportFiles directory.
 
-Additional cohort-specific documentation may exist, e.g.:
+### Additional cohort-specific documentation may exist, e.g.:
 	•	/datasets/inter99-AUDIT/Readme_before_analysis_IMPORTANT.txt
 
 Always review these documents before analysis.
@@ -79,10 +80,10 @@ Always review these documents before analysis.
 
 If your analysis involves multiple cohorts from the larger Glostrup cohort collection, you may need to remove related individuals.
 
-Relatedness exclusion lists are available under:
+### Relatedness exclusion lists are available under:
 	•	/projects/glostrup-AUDIT/data/supportFiles/
 
-Example:
+### Example:
 	•	Failed_IBD_inter99_health_06 (or similar cohort-specific IBD exclusion files)
 
 ### Recommended exclusion practice
